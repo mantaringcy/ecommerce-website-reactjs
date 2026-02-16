@@ -76,3 +76,7 @@ const products = [
 export function getProducts() {
   return products;
 }
+
+export function getProductbyId(id) {
+  return products.find((p) => p.id === Number(id));
+}

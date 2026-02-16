@@ -10,7 +10,7 @@ export default function AuthProvider({ children }) {
   );
 
   function signUp(email, password) {
-    const users = JSON.parse(localStorage.getItem("users")) || "[]";
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
     if (users.find((u) => u.email === email)) {
       return { success: false, error: "Email already exists" };
@@ -27,7 +27,7 @@ export default function AuthProvider({ children }) {
   }
 
   function login(email, password) {
-    const users = JSON.parse(localStorage.getItem("users")) || "[]";
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find(
       (u) => u.email === email && u.password === password,
     );
@@ -52,4 +52,10 @@ export default function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+
+  return context;
 }
