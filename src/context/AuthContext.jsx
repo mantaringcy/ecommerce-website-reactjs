@@ -1,8 +1,11 @@
 import { createContext, useContext, useState } from "react";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
+  const [mode, setMode] = useState("signup");
+
   const [user, setUser] = useState(
     localStorage.getItem("currentUserEmail")
       ? { email: localStorage.getItem("currentUserEmail") }
@@ -48,12 +51,15 @@ export default function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ signUp, user, login, logout }}>
+    <AuthContext.Provider
+      value={{ signUp, user, login, logout, mode, setMode }}
+    >
       {children}
     </AuthContext.Provider>
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const context = useContext(AuthContext);
 

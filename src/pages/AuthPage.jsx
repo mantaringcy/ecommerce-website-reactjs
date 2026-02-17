@@ -4,11 +4,10 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
-  const [mode, setMode] = useState("signup");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const { signUp, user, login } = useAuth();
+  const { signUp, user, login, mode, setMode } = useAuth();
 
   const {
     register,
